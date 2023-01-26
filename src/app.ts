@@ -2,6 +2,16 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
+import { dataSource } from './sql-data-source';
+
+export const database = async () => {
+  try {
+    await dataSource.initialize();
+    console.log('SQL data source has been initialized!');
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 dotenv.config();
 const app = express();
